@@ -1,0 +1,10 @@
+[Unit]
+Description=Jadwal pembersihan cliphist setiap 30 hari
+
+[Timer]
+OnBootSec=15min
+OnUnitActiveSec=30days
+Unit=cliphist-clean.service
+
+[Install]
+WantedBy=timers.target

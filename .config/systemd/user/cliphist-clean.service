@@ -1,0 +1,6 @@
+[Unit]
+Description=Bersihkan riwayat cliphist setiap 30 hari
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/cliphist wipe

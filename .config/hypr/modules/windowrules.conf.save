@@ -1,0 +1,73 @@
+##############################
+### WINDOWS AND WORKSPACES ###
+##############################
+
+# See https://wiki.hypr.land/Configuring/Window-Rules/ for more
+# See https://wiki.hypr.land/Configuring/Workspace-Rules/ for workspace rules
+
+# Example windowrules that are useful
+
+windowrule {
+    # Ignore maximize requests from all apps. You'll probably like this.
+    name = suppress-maximize-events
+    match:class = .*
+
+    suppress_event = maximize
+}
+
+windowrule {
+    # Fix some dragging issues with XWayland
+    name = fix-xwayland-drags
+    match:class = ^$
+    match:title = ^$
+    match:xwayland = true
+    match:float = true
+    match:fullscreen = false
+    match:pin = false
+    #no_border = true
+    no_focus = true
+}
+
+# Hyprland-run windowrule
+windowrule {
+    name = move-hyprland-run
+
+    match:class = hyprland-run
+
+    move = 20 monitor_h-120
+    float = yes
+}
+
+windowrule {
+    name = google-search
+    match:initial_class = ^(chrome-__home_rogan_.config_my-plugins_search.html-Default)$
+    match:initial_title = ^(_/home/rogan/.config/my-plugins/search.html)$
+    # match:title=search.html
+    float = true
+    size = 700 400
+    center = true
+    pin = on
+    stay_focused = on
+    # border_size = 0
+}
+
+windowrule{
+    name = wofi-extend
+    match:initial_class = wofi
+    match:class = wofi
+    match:initial_title = Launch
+    float = true
+    pin = on
+    stay_focused = on
+}
+
+windowrule {
+    name = ask-file
+    match:initial_title = ^(Open Folder)$
+    match:class = ^(code)$
+    match:title = ^(Open Folder)$
+    
+    # JANGAN pakai 'match:' di sini, karena ini adalah aksi/hasil yang diinginkan
+    float = true
+}
+
