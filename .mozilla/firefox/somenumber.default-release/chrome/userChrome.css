@@ -1,0 +1,186 @@
+/* ========================================================= */
+/* BAGIAN 1: MENGHAPUS TOMBOL YANG TIDAK DIINGINKAN          */
+/* ========================================================= */
+
+/* Menghapus Container Tombol Window (Close, Min, Max) */
+/* Ini yang paling sering muncul di pojok kanan atas */
+.titlebar-buttonbox-container {
+    display: none !important;
+}
+
+/* Hapus Tombol Forward (Panah Kanan) */
+#forward-button {
+    display: none !important;
+}
+
+/* Hapus Tombol Sidebar (karena Anda pakai Vertical Tabs permanen) */
+/* #sidebar-button { display: none !important; } */
+
+/* Hapus Tombol Ekstensi (Gambar Puzzle) */
+/* #unified-extensions-button { display: none !important; } */
+
+/* Hapus Tombol "All Tabs" (Panah bawah di pojok kanan tab bar) */
+#alltabs-button {
+    display: none !important;
+}
+
+/* Hapus Tombol Firefox View (Ikon folder/tab di kiri atas) */
+#firefox-view-button {
+    display: none !important;
+}
+
+/* --- PEMBERSIHAN URL BAR --- */
+
+/* Hapus Tombol Bookmark (Bintang) & Reader Mode di dalam URL Bar */
+#page-action-buttons {
+    display: none !important;
+}
+
+/* Hapus Tombol Tracking Protection (Ikon Perisai) */
+#tracking-protection-icon-container {
+    display: none !important;
+}
+
+/* Hapus Tombol Info Identitas/Site Info (Gembok & Setting) */
+/* HATI-HATI: Ini menghilangkan indikator SSL/Gembok. 
+   Hapus blok '#identity-box' di bawah ini jika ingin Gembok tetap ada. */
+/* #identity-box { 
+    display: none !important; 
+} */
+
+
+/* ========================================================= */
+/* BAGIAN 2: SIDEBAR SMALL          */
+/* ========================================================= */
+
+.tab-background[selected=''] {
+    border-width: 0px !important;
+    outline: 0px !important;
+    background-color: #7d7d7d !important;
+}
+
+.tab-content[selected=''] {
+    color: black !important;
+}
+
+#sidebar-main {
+    position: absolute !important;
+    z-index: 4 !important;
+    top: 0px !important;
+    bottom: 0px !important;
+    left: 0px !important;
+}
+
+#tabbrowser-tabbox{
+    margin-left: 34px !important;
+}
+
+#tabbrowser-tabbox[sidebar-panel-open]{
+    margin-left: 0px !important;
+}
+
+#sidebar-main[sidebar-launcher-expanded=''] {
+    z-index: var(--browser-area-z-index-sidebar-expand-on-hover) !important;
+    position: absolute !important;
+    color: var(--toolbox-textcolor) !important;
+    background-image: linear-gradient(var(--toolbox-bgcolor)) !important;
+    inset: 0 !important;
+    inset-inline-end: unset !important;
+}
+
+#sidebar-main:not([sidebar-launcher-expanded]) {
+    width: 34px !important;
+}
+
+.tab-background,
+.tab-content,
+.tab-group-label-hover-highlight {
+    margin-inline: 2px !important;
+    padding-inline: 7px !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+}
+
+#sidebar-main:not([sidebar-launcher-expanded]) .tab-close-button.close-icon {
+    display: none !important;
+}
+
+#sidebar-main:not([sidebar-launcher-expanded]) .tab-background,
+#sidebar-main:not([sidebar-launcher-expanded]) .tab-content,
+#sidebar-main:not([sidebar-launcher-expanded]) .tab-group-label-hover-highlight {
+    width: 30px !important;
+    padding-inline: 0px !important;
+}
+
+/* NEW BUTTON */
+
+#vertical-tabs-newtab-button{
+    width: auto !important;
+}
+
+#sidebar-main:not([sidebar-launcher-expanded]) #vertical-tabs-newtab-button{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#sidebar-main:not([sidebar-launcher-expanded]) #tabs-newtab-button {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* OHTER BUTTON (SETTINGS, GEMINI, ESC) */
+
+#main-button {
+    margin: 2px !important;
+    padding: 0 !important;
+    width: auto !important;
+}
+
+/* ========================================================= */
+/* BAGIAN 3: SKALA KONTEN AI (METODE TRANSFORM)              */
+/* ========================================================= */
+
+#sidebar-box browser {
+    /* 1. KECILKAN TAMPILAN (SCALE) */
+    /* Ubah angka 0.8 ini sesuai selera (0.7 = lebih kecil, 0.9 = lebih besar) */
+    transform: scale(0.7) !important;
+
+    /* 2. TITIK TUMPU (Jangkar di pojok kiri atas) */
+    transform-origin: 0 0 !important;
+
+    /* 3. KOMPENSASI UKURAN (PENTING!) */
+    /* Karena isinya dikecilkan, kita harus MEMPERBESAR area rendernya */
+    /* Rumusnya: 100% dibagi Scale. */
+    /* Jika Scale 0.7 --> 100 / 0.7 = 142.8% */
+    /* Jika Scale 0.8 --> 100 / 0.8 = 125% */
+
+    width: 142.8% !important;
+    height: 142.8% !important;
+
+    margin-left: 34px !important;
+    padding-right: 34px !important;
+
+    /* Opsional: Pastikan background tetap solid */
+    background-color: #000000 !important;
+}
+
+/* ========================================================= */
+/* FIX UNTUK FULLSCREEN VIDEO YOUTUBE (DOM FULLSCREEN)       */
+/* ========================================================= */
+
+/* Menghilangkan margin kiri buatanmu saat video fullscreen */
+:root[inDOMFullscreen] #tabbrowser-tabbox {
+    margin-left: 0px !important;
+}
+
+/* Menghilangkan kompensasi margin pada browser box buatanmu */
+:root[inDOMFullscreen] #sidebar-box browser {
+    margin-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+/* Sembunyikan sidebar sepenuhnya saat video fullscreen agar tidak ada bug visual */
+:root[inDOMFullscreen] #sidebar-main {
+    display: none !important;
+}

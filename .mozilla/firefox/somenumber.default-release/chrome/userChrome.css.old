@@ -1,0 +1,266 @@
+/* --- BAGIAN 1: MATIKAN VARIABEL WARNA TEMA --- */
+:root {
+    /* Paksa variabel background sidebar jadi transparan */
+    --sidebar-background-color: transparent !important;
+    --lwt-sidebar-background-color: transparent !important;
+
+    /* Paksa warna background toolbar/topbar jadi transparan */
+    --toolbar-bgcolor: transparent !important;
+    --lwt-accent-color: transparent !important;
+    --lwt-text-color: #ffffff !important;
+    /* Pastikan teks putih */
+}
+
+/* --- BAGIAN 2: TARGET CONTAINER SIDEBAR BARU --- */
+/* Target utama untuk Sidebar Revamp / Vertical Tabs */
+#sidebar-main,
+#sidebar-box,
+.sidebar-panel {
+    background-color: transparent !important;
+    background-image: none !important;
+    appearance: none !important;
+    border-right: none !important;
+}
+
+/* Container vertikal tabs spesifik */
+#vertical-tabs {
+    background-color: transparent !important;
+}
+
+/* Menghapus background area tab (tempat list tab berada) */
+#tabbrowser-tabs[orient="vertical"] {
+    background-color: transparent !important;
+}
+
+/* --- BAGIAN 3: PEMBERSIHAN EXTRA --- */
+/* Hapus garis pemisah antara sidebar dan web */
+#sidebar-splitter {
+    display: none !important;
+}
+
+/* Pastikan area browser utama tidak punya background 'leak' */
+#appcontent,
+#tabbrowser-tabpanels {
+    background-color: transparent !important;
+}
+
+/* Transparansi Top Bar (Address bar area) */
+#navigator-toolbox {
+    background-color: transparent !important;
+    border-bottom: none !important;
+}
+
+/* ========================================================= */
+/* BAGIAN 4: MENGHAPUS TOMBOL YANG TIDAK DIINGINKAN          */
+/* ========================================================= */
+
+/* Menghapus Container Tombol Window (Close, Min, Max) */
+/* Ini yang paling sering muncul di pojok kanan atas */
+.titlebar-buttonbox-container {
+    display: none !important;
+}
+
+/* Hapus Tombol Forward (Panah Kanan) */
+#forward-button {
+    display: none !important;
+}
+
+/* Hapus Tombol Sidebar (karena Anda pakai Vertical Tabs permanen) */
+/* #sidebar-button { display: none !important; } */
+
+/* Hapus Tombol Ekstensi (Gambar Puzzle) */
+/* #unified-extensions-button { display: none !important; } */
+
+/* Hapus Tombol "All Tabs" (Panah bawah di pojok kanan tab bar) */
+#alltabs-button {
+    display: none !important;
+}
+
+/* Hapus Tombol Firefox View (Ikon folder/tab di kiri atas) */
+#firefox-view-button {
+    display: none !important;
+}
+
+/* --- PEMBERSIHAN URL BAR --- */
+
+/* Hapus Tombol Bookmark (Bintang) & Reader Mode di dalam URL Bar */
+#page-action-buttons {
+    display: none !important;
+}
+
+/* Hapus Tombol Tracking Protection (Ikon Perisai) */
+#tracking-protection-icon-container {
+    display: none !important;
+}
+
+/* Hapus Tombol Info Identitas/Site Info (Gembok & Setting) */
+/* HATI-HATI: Ini menghilangkan indikator SSL/Gembok. 
+   Hapus blok '#identity-box' di bawah ini jika ingin Gembok tetap ada. */
+/* #identity-box { 
+    display: none !important; 
+} */
+
+/* ========================================================= */
+/* BAGIAN 5: PENYESUAIAN TATA LETAK (LAYOUT)                 */
+/* ========================================================= */
+
+/* Memastikan URL Bar berada di tengah dan tombol mepet kanan/kiri */
+#urlbar-container {
+    flex-grow: 1 !important;
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+}
+
+/* Memperbaiki posisi popup menu agar tidak tertutup taskbar/layar bawah 
+   (Popup akan mencoba muncul ke atas) */
+panel[type="arrow"] {
+    margin-bottom: 20px !important;
+}
+
+/* ========================================================= */
+/* BAGIAN 6: MENGHILANGKAN GARIS PEMISAH (BORDER/SPLITTER)   */
+/* ========================================================= */
+
+/* 1. Menghilangkan Garis Vertikal (Antara Tab dan Panel Kanan) */
+#sidebar-box,
+#sidebar-main,
+.sidebar-panel {
+    border: none !important;
+    border-inline: none !important;
+    /* Hapus border kiri/kanan */
+    box-shadow: none !important;
+    /* Hapus bayangan jika ada */
+}
+
+/* Jika garis itu berasal dari splitter (pemisah yang bisa digeser) */
+#sidebar-splitter {
+    display: none !important;
+    width: 0 !important;
+    border: none !important;
+}
+
+/* 2. Menghilangkan Garis Horizontal (Di atas tombol Settings/Gemini) */
+/* Target area toolbar/footer di dalam sidebar */
+#sidebar-main toolbar,
+#sidebar-main .sidebar-footer,
+#sidebar-box toolbar {
+    border-top: none !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+}
+
+/* Hapus garis spesifik pada container alat/tools di bawah */
+#sidebar-main #tools-container,
+#sidebar-main .pinned-tools-container {
+    border-top: none !important;
+}
+
+/* Hapus separator (garis pemisah) bawaan Firefox di dalam list */
+#sidebar-main separator,
+#sidebar-main menuseparator,
+toolbarseparator {
+    display: none !important;
+    appearance: none !important;
+}
+
+/* PEMBERSIHAN EKSTRA UNTUK SIDEBAR BARU (Vertical Tabs) */
+/* Terkadang garis muncul dari 'scrollbox' atau container dalam */
+#sidebar-main scrollbox {
+    border: none !important;
+}
+
+/* ========================================================= */
+/* BAGIAN 7: STYLING INDIVIDUAL TAB (MEMBUAT TAB TERLIHAT)   */
+/* ========================================================= */
+
+/* 1. Mengatur Tampilan Dasar Semua Tab di Sidebar */
+#tabbrowser-tabs[orient="vertical"] .tab-background,
+#vertical-tabs .tab-background {
+    /* PENTING: Ini mengembalikan warna background tab */
+    /* Gunakan rgba(r, g, b, alpha) agar semi-transparan atau solid */
+    background-color: rgba(40, 40, 40, 0.4) !important;
+
+    /* Memberi sedikit jarak antar tab atas-bawah */
+    margin-block: 1px !important;
+
+    width: auto !important;
+
+    /* Memberi jarak kiri-kanan agar tidak mepet dinding sidebar */
+    margin-inline: 4px !important;
+
+    /* Menambahkan Border (Garis Tepi) Putih Tipis */
+    /* border: 1px solid rgba(255, 255, 255, 0.3) !important; */
+    border: none !important;
+
+    /* Shadow halus agar tab terlihat 'mengambang' */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* 2. Tampilan Tab yang Sedang AKTIF/DIBUKA (Lebih Terang/Jelas) */
+#tabbrowser-tabs[orient="vertical"] .tabbrowser-tab[selected] .tab-background,
+#vertical-tabs .tabbrowser-tab[selected] .tab-background {
+    /* Background lebih solid untuk tab aktif */
+    background-color: rgba(40, 40, 40, 0.9) !important;
+
+    /* Border menyala putih penuh */
+    border: 1px solid #ffffff !important;
+
+    /* Efek glowing opsional */
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 3. Efek Saat Mouse Mengarah ke Tab (Hover) */
+#tabbrowser-tabs[orient="vertical"] .tabbrowser-tab:hover .tab-background,
+#vertical-tabs .tabbrowser-tab:hover .tab-background {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    border-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* ========================================================= */
+/* BAGIAN 8: SKALA KONTEN AI (METODE TRANSFORM)              */
+/* ========================================================= */
+
+#sidebar-box browser {
+    /* 1. KECILKAN TAMPILAN (SCALE) */
+    /* Ubah angka 0.8 ini sesuai selera (0.7 = lebih kecil, 0.9 = lebih besar) */
+    transform: scale(0.7) !important; 
+    
+    /* 2. TITIK TUMPU (Jangkar di pojok kiri atas) */
+    transform-origin: 0 0 !important;
+
+    /* 3. KOMPENSASI UKURAN (PENTING!) */
+    /* Karena isinya dikecilkan, kita harus MEMPERBESAR area rendernya */
+    /* Rumusnya: 100% dibagi Scale. */
+    /* Jika Scale 0.7 --> 100 / 0.7 = 142.8% */
+    /* Jika Scale 0.8 --> 100 / 0.8 = 125% */
+    
+    width: 142.8% !important;  
+    height: 142.8% !important;
+    
+    /* Opsional: Pastikan background tetap solid */
+    background-color: #000000 !important;
+}
+
+/* ========================================================= */
+/* BAGIAN 9: KETERBACAAN (TEXT & ICON SHADOW)                */
+/* ========================================================= */
+
+/* 1. Targetkan semua ikon dan teks di Toolbar Utama */
+#navigator-toolbox {
+    /* Bayangan teks: X-offset, Y-offset, Blur-radius, Color */
+    text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.9) !important;
+}
+
+/* 2. Targetkan Ikon Tombol (SVG) secara spesifik */
+/* Karena ikon SVG tidak selalu merespon text-shadow, kita pakai drop-shadow filter */
+#navigator-toolbox .toolbarbutton-icon,
+#navigator-toolbox .urlbar-icon,
+.tab-icon-image {
+    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.9)) !important;
+}
+
+/* 3. Membuat Input URL Bar lebih kontras */
+#urlbar-input {
+    color: white !important;
+    text-shadow: 0px 1px 2px black !important;
+}
