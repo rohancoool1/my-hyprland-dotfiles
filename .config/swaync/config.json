@@ -95,13 +95,13 @@
           "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && (nmcli networking off; rfkill block bluetooth) || (nmcli networking on; rfkill unblock bluetooth)'",
           "update-command": "sh -c '[[ $(nmcli networking) == *disabled* ]] && rfkill list bluetooth | grep -q Soft.blocked:.yes && echo true || echo false'"
         },
-      	{
-  	  "label": "☪",
-  	  "type": "toggle",
-  	  "active": false,
-  	  "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && gsettings set org.gnome.desktop.interface gtk-theme \"Graphite-Dark-compact\" || gsettings set org.gnome.desktop.interface gtk-theme \"Graphite-Light-compact\"'",
-  	  "update-command": "sh -c '[[ $(gsettings get org.gnome.desktop.interface gtk-theme) == *\"Graphite-Dark-compact\"* ]] && echo true || echo false'"
-	},
+	{
+          "label": "☪",
+          "type": "toggle",
+          "active": false,
+          "command": "sh -c 'if [[ $SWAYNC_TOGGLE_STATE == true ]]; then wlsunset -t 5000 -T 5001 & else pkill -x wlsunset; fi'",
+          "update-command": "sh -c 'pgrep -x wlsunset > /dev/null && echo true || echo false'"
+        },
         {
           "label": "⏻ ",
           "command": "wlogout"

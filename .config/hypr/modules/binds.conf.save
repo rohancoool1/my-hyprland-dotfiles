@@ -29,7 +29,6 @@ bind = $mainMod, P, pin
 bind = $mainMod, Super_L, exec, sh -c 'pkill rofi || $menu'
 # bind = $mainMod, P, pseudo, # dwindle
 bind = $mainMod, F, fullscreen, 1
-bind = $mainMod, F11, fullscreen, 2
 bind = $mainMod, K, togglesplit, # dwindle
 bind = $mainMod, W, exec, firefox
 
@@ -37,7 +36,6 @@ bind = $mainMod, W, exec, firefox
 # bind = $mainMod, V, exec, killall -9 rofi || cliphist list | head -n 10 | rofi -dmenu | cliphist decode | wl-copy
 bind = $mainMod, V, exec, sh -c 'pkill rofi || cliphist list | head -n 10 | $menu2 | cliphist decode | wl-copy && sleep 0.1 && hyprctl dispatch sendshortcut CTRL, V, activewindow'
 bind = $mainMod, period, exec, sh -c 'pkill rofi || BEMOJI_PICKER_CMD="~/.config/rofi/launchers/type-2/launcher.sh -dmenu" bemoji -t'
-# bind = $mainMod, period, exec, sh -c 'pkill rofi || { emoji=$(BEMOJI_PICKER_CMD="~/.config/rofi/launchers/type-2/launcher.sh -dmenu" bemoji -n); sleep 0.2; wtype "$emoji"; }'
 
 # SEARCH LAUNCHER
 # bind = $mainMod, G, exec, chromium --app="file:///home/rogan/.config/my-plugins/search.html"
@@ -47,6 +45,8 @@ bind = $mainMod, G, exec, killall -9 search_launcher || ~/.config/my-plugins/sea
 # Move focus with mainMod + arrow keys
 bind = $mainMod, left, movefocus, l
 bind = $mainMod, right, movefocus, r
+bind = $mainMod, J, movefocus, l
+bind = $mainMod, L, movefocus, r
 bind = $mainMod, up, movefocus, u
 bind = $mainMod, down, movefocus, d
 
@@ -81,14 +81,12 @@ bind = $mainMod SHIFT, S, movetoworkspace, special:magic
 # Scroll through existing workspaces with mainMod + scroll
 bind = $mainMod, mouse_down, workspace, e+1
 bind = $mainMod, mouse_up, workspace, e-1
-bind = $mainMod, L, workspace, e+1
-bind = $mainMod, J, workspace, e-1
 
 # Screenshot
 bind = $mainMod, Print, exec, hyprshot -m region --clipboard-only
 bind = $mainMod SHIFT, Print, exec, hyprshot -m window --clipboard-only
 bind = CTRL SHIFT, S, exec, hyprshot -m region --clipboard-only
-bind = , Print, exec, killall -9 hyprshot || hyprshot -m output
+bind = , Print, exec, hyprshot -m output 
 
 
 # Suspend automatically
@@ -99,24 +97,12 @@ bindm = $mainMod, mouse:272, movewindow
 bindm = $mainMod, mouse:273, resizewindow
 
 # Laptop multimedia keys for volume and LCD brightness
-# bindel = ,XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+
-# bindel = ,XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
-# bindel = ,XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-# bindel = ,XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
-# bindel = ,XF86MonBrightnessUp, exec, brightnessctl -e4 -n2 set 5%+
-# bindel = ,XF86MonBrightnessDown, exec, brightnessctl -e4 -n2 set 5%-
-# Volume Control
-binde = , XF86AudioRaiseVolume, exec, swayosd-client --output-volume raise
-binde = , XF86AudioLowerVolume, exec, swayosd-client --output-volume lower
-bind = , XF86AudioMute, exec, swayosd-client --output-volume mute-toggle
-bind = , XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
-
-# Brightness Control (Pastikan Anda punya akses ke video group atau pakai brightnessctl)
-binde = , XF86MonBrightnessUp, exec, swayosd-client --brightness raise
-binde = , XF86MonBrightnessDown, exec, swayosd-client --brightness lower
-
-# Caps Lock Indicator (Bonus jika Anda butuh)
-bind = , Caps_Lock, exec, swayosd-client --caps-lock
+bindel = ,XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+
+bindel = ,XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindel = ,XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindel = ,XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindel = ,XF86MonBrightnessUp, exec, brightnessctl -e4 -n2 set 5%+
+bindel = ,XF86MonBrightnessDown, exec, brightnessctl -e4 -n2 set 5%-
 
 # Requires playerctl
 bindl = , XF86AudioNext, exec, playerctl next

@@ -1,0 +1,19 @@
+[Unit]
+Description=RClone mount for %i
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/rclone mount %i: %h/%i \
+    --vfs-cache-mode full \
+    --no-modtime \
+    --vfs-cache-max-age 24h \
+    --vfs-read-chunk-size 32M \
+    --transfers 4
+ExecStop=/usr/bin/fusermount3 -u %h/%i
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target

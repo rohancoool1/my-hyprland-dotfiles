@@ -30,7 +30,7 @@ window#waybar {}
 }
 
 #custom-arch,
-#workspaces,
+#workspaces:not(.taskbar),
 #net,
 #clkd,
 #pc,
@@ -75,9 +75,9 @@ tooltip label {
 #custom-arch {
     color: @fg;
     font-size: 1rem;
-    border-left-width: 5px;
-    border-right-width: 5px;
-    padding: 0 4px;
+    border-left-width: 2px;
+    border-right-width: 2px;
+    padding: 0 8px;
 }
 
 #custom-arch:hover {
@@ -89,7 +89,7 @@ tooltip label {
     padding: 2px 2px 2px 2px;
 }
 
-#workspaces {
+#workspaces:not(.taskbar) {
     padding: 0;
     border: 0;
     color: @fg;
@@ -97,13 +97,13 @@ tooltip label {
     transition: all 0.3s ease-in-out;
 }
 
-#workspaces button {
+#workspaces:not(.taskbar) button {
     background-color: inherit;
     border-radius: inherit;
     padding: 0 12px;
 }
 
-#workspaces button.active {
+#workspaces:not(.taskbar) button.active {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     padding-right: 20px;
@@ -113,7 +113,7 @@ tooltip label {
     color: @bg0;
 }
 
-#workspaces button.active:last-child {
+#workspaces:not(.taskbar) button.active:last-child {
     border-top-right-radius: inherit;
     border-bottom-right-radius: inherit;
     padding-right: calc(12px);
@@ -121,11 +121,11 @@ tooltip label {
 
 }
 
-#workspaces button.active+button {
+#workspaces:not(.taskbar) button.active+button {
     margin-left: -18px;
 }
 
-#workspaces button:hover {
+#workspaces:not(.taskbar) button:hover {
     background-color: @purple;
     color: @bg0;
     border-top-right-radius: 0;
@@ -134,19 +134,18 @@ tooltip label {
     background-size: 400% 400%;
 }
 
-#workspaces button:hover:last-child {
+#workspaces:not(.taskbar) button:hover:last-child {
     border-top-right-radius: inherit;
     border-bottom-right-radius: inherit;
     padding-right: calc(8px+2px);
 }
 
-#workspaces button:hover+button {
+#workspaces:not(.taskbar) button:hover+button {
     margin-left: -12px;
 }
 
-#workspaces button.urgent {
-    background-color: @red;
-    color: @bg0;
+#workspaces:not(.taskbar) button.urgent {
+    animation: blink 1s infinite ease-in-out;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     min-width: 40px;
@@ -154,14 +153,27 @@ tooltip label {
     transition: all 0.3s ease-in-out;
 }
 
-#workspaces button.urgent:last-child {
+#workspaces:not(.taskbar) button.urgent:last-child {
     border-top-right-radius: inherit;
     border-bottom-right-radius: inherit;
     padding-right: calc(12px+2px);
 }
 
-#workspaces button.urgent+button {
+#workspaces:not(.taskbar) button.urgent+button {
     margin-left: -12px;
+}
+
+@keyframes blink {
+    from {
+        background-color: @bg0;
+        color: @fg;
+
+    }
+
+    to {
+        color: @bg0;
+        background-color: @red;
+    }
 }
 
 /* MODULES RIGHT END */
@@ -197,6 +209,21 @@ tooltip label {
     padding: 0;
 }
 
+#workspaces.taskbar{
+    padding-left: 3px;
+}
+
+#workspaces.taskbar .taskbar-window {
+    opacity: 0.4; 
+    padding-left: 1px;
+    transition: all 0.3s ease;
+}
+
+/* 2. Tampilan KHUSUS untuk ikon aplikasi yang SEDANG AKTIF (fokus / di depan) */
+#workspaces.taskbar .taskbar-window.active {
+    opacity: 1.0;
+}
+
 #custom-split.center-right {
     background-color: @purple;
     padding: 0;
@@ -219,16 +246,15 @@ tooltip label {
     padding-left: 20px;
 }
 
-#network.up,
-#network.down,
-#network.split {
+#network {
     color: @aqua;
     min-width: 65px;
 }
 
 
 #network.up:hover,
-#network.down:hover {
+#network.down:hover,
+#network.ssid:hover {
     color: aqua
 }
 

@@ -22,15 +22,18 @@ equipped with features needed for productivity.
   ├── oh-my-zsh
   ├── powerlevel10k
   ├── JetBrains Mono Nerd Font
+  ├── GeistMono Nerd Font Mono
   └── JetBrains Mono Nerd Font Propo
 • rclone - cloud storage
+  └── fuse3
 • swww - wallpaper
 • waybar - top bar
   ├── Adwaita Sans
   ├── swaync
   │   ├── nwg-look - graphite dark compact
-  │   ├── nwg-look - graphite light compact
-  │   └── nmcli
+  │   ├── wlsunset
+  │   ├── nwg-look - graphite light compact
+  │   └── Network Manager
   ├── btop
   ├── bandwhich
   ├── pavucontrol
@@ -39,13 +42,17 @@ equipped with features needed for productivity.
       └── hyprlock
 • rofi - app launcher, clipboard history, emote list
 • cliphist - clipboard history (in keybindings) 
-• wl-copy - clipboard history (in keybindings)
-• bemoji - emote list (in keybindings)
+  └── wl-clipboard
+• bemoji-git - emote list (in keybindings)
+  └── wtype
+• hyprshot - screenshot (in keybindings) 
 • hypridle - auto screen off or suspend
 • socat - auto-pause (in my-plugins)
 • jq - auto-pause (in my-plugins)
-• wpctl - volume (in keybindings)
+• wpctl - mic mute (in keybindings)
+• swayosd - volume (in keybindings)
 • brightnessctl - brightness (in keybindings)
+• webkit2gtk - search launcher (in my-plugins)
 • rust - search launcher (in my-plugins)
 • cargo - search launcher (in my-plugins)
 ```
@@ -81,4 +88,10 @@ the order of these features below are sorted by my installation/setup step.
 
 
 ## Attention
-U should change ur wallpaper in .wallpaper/choosen
+- U should change ur wallpaper in .wallpaper/choosen
+- for rclone, the name of remote must be same as folder that will be mounted
+- Start all services:
+systemctl --user enable --now rclone@<remote-name>.service
+systemctl --user enable --now rclone@<remote-name>.service
+systemctl --user enable --now cliphist-clean.timer
+systemctl --user enable --now wallpaper-swww-timer.timer

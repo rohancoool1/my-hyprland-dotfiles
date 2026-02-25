@@ -1,0 +1,5 @@
+[Unit]
+Description=Ganti Wallpaper Berdasarkan Jam
+
+[Service]
+ExecStart=%h/.config/my-plugins/swww-change-by-time.sh
