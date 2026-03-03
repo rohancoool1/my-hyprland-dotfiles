@@ -95,15 +95,15 @@
           "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && (nmcli networking off; rfkill block bluetooth) || (nmcli networking on; rfkill unblock bluetooth)'",
           "update-command": "sh -c '[[ $(nmcli networking) == *disabled* ]] && rfkill list bluetooth | grep -q Soft.blocked:.yes && echo true || echo false'"
         },
-	{
-          "label": "☪",
+        {
+          "label": "󰛨",
           "type": "toggle",
           "active": false,
-          "command": "sh -c 'if [[ $SWAYNC_TOGGLE_STATE == true ]]; then wlsunset -t 5000 -T 5001 & else pkill -x wlsunset; fi'",
-          "update-command": "sh -c 'pgrep -x wlsunset > /dev/null && echo true || echo false'"
+          "command": "sh -c 'if pgrep hyprsunset; then pkill hyprsunset; else hyprsunset --temperature 5000K; fi'",
+          "update-command": "sh -c 'pgrep hyprsunset > /dev/null && echo true || echo false'"
         },
         {
-          "label": "⏻ ",
+          "label": "⏻",
           "command": "wlogout"
         }
       ]

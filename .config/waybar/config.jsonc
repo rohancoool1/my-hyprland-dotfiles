@@ -4,10 +4,26 @@
   "margin-left": 10,
   "margin-right": 10,
   "margin-top": 5,
-  "margin-bottom": -10,
+  "margin-bottom": -6,
   "modules-left": ["custom/arch", "group/work"],
   "modules-center": ["group/center#pills"],
-  "modules-right": ["group/audio", "group/trays", "group/bat", "custom/notification"],
+  "modules-right": [
+    "group/audio",
+    "group/trays",
+    "group/bat",
+    "custom/notification",
+  ],
+  "hyprland/workspaces#taskbar": {
+    "active-only": true,
+    "format": "{windows}",
+    "workspace-taskbar": {
+      "enable": true,
+      "update-active-window": true,
+      "format": "{icon}",
+      "icon-size": 14,
+      "tooltip-format": "{title}",
+    },
+  },
   "clock#clk": {
     "format": "  {:%H:%M}",
     "format-alt": "{:%H:%M}",
@@ -23,7 +39,7 @@
     "modules": ["tray"],
   },
   "tray": {
-    "icon-size": 21,
+    "icon-size": 19,
     "spacing": 4,
   },
   "power-profiles-daemon": {
@@ -85,7 +101,7 @@
   },
   "pulseaudio#icon": {
     "format": "{icon}",
-    "format-bluetooth": "{icon}",
+    "format-bluetooth": "",
     "format-muted": "",
     "format-icons": {
       "headphone": "",
@@ -100,6 +116,13 @@
     "scroll-step": 1,
     "on-click": "pavucontrol",
     "ignored-sinks": ["Easy Effects Sink"],
+  },
+  "bluetooth": {
+    "format": "",
+    "format-disabled": "",
+    "format-off": "",
+    "format-connected": " {device_battery_percentage}%",
+    "tooltip-format-connected": " {device_battery_percentage}%",
   },
   "network#split": {
     "interval": 1,
@@ -220,7 +243,13 @@
   },
   "group/net": {
     "orientation": "horizontal",
-    "modules": ["network#up", "network#split", "network#down"],
+    "modules": [
+      "network#up",
+      "network#split",
+      "network#down",
+      "network#split",
+      "hyprland/workspaces#taskbar",
+    ],
   },
   "group/clkd": {
     "orientation": "horizontal",
@@ -238,7 +267,7 @@
   },
   "group/audio": {
     "orientation": "horizontal",
-    "modules": ["pulseaudio#percentage", "pulseaudio#icon"],
+    "modules": ["pulseaudio#percentage", "pulseaudio#icon", "bluetooth"],
   },
   "group/bat": {
     "orientation": "horizontal",

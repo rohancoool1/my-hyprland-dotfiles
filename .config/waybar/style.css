@@ -324,6 +324,17 @@ tooltip label {
     color: alpha(@bg, 0.4);
 }
 
+#bluetooth{
+        background-color: @yellow;
+    color: @bg0;
+    padding: 0 8px;
+}
+
+#bluetooth:not(.connected) {
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+}
 #trays {
     border: 0;
     background: linear-gradient(to right, @yellow, @green);
